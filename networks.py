@@ -1,5 +1,6 @@
 import networkx as nx 
 import turtle
+import turtfunctions as tf
 import numpy as np
 from collections import deque
 from pychord import chord
@@ -17,7 +18,7 @@ prog = ChordProgression(testprog)
 chordnotes = [p.components_with_pitch(4) for p in prog] 
 
 tur = turtle.Turtle()
-tur.ht() # hide turtle arrow
+turtle.hideturtle() # hide turtle arrow
 
 for i, chord in enumerate(chordnotes):
 	indices = []
@@ -32,26 +33,26 @@ for i, chord in enumerate(chordnotes):
 			ints.append(intervals[np.abs(ind-indices[j-1])])
 	chordnotes[i] = (chord, indices, ints)
 	print(chordnotes[i])
+	turtle.hideturtle() # hide turtle arrow
 	tur.penup()
 	tur.setpos(-5, 15)
-	tur.write("m7")
+	tur.write(ints[0])
 	tur.home()
 	tur.penup()
 	tur.dot(20, "blue") # first interval
 	tur.setpos(95,15)
-	tur.write("maj3")
+	tur.write(ints[1])
 	tur.penup()
 	tur.setpos(100,0)
 	tur.dot(20, "green") # second interval
 	tur.setpos(195,15)
-	tur.write("m3")
+	tur.write(ints[2])
 	tur.setpos(200,0)
 	tur.dot(20, "red") #third interval
 	tur.home()
+	tur.clear()
 
 turtle.done()
 # print(chordnotes)
 
 # tonnetz grid representation of circle of intervals
-#isofifths = {[root, fifth, ],[root, ]}
-# root
