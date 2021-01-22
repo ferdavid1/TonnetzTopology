@@ -1,7 +1,7 @@
 # TonnetzTopology
-Exploring visualization of chord progressions through topology, networks, set and metric space theory, and music theory
+Exploring visualization of chord progressions through topology, networks, set and metric space theory, and music theory using Python's Turtle, P5, Networkx, Matplotlib
+Visualizing consonance and dissonance by color intensity, intervals by their color with respect to the root note. 
 
-P5, Networkx, Matplotlib
 
 - Relevant Papers
 
@@ -16,3 +16,7 @@ P5, Networkx, Matplotlib
     
     Isochords: Visualizing Structure in Music
     http://social.cs.uiuc.edu/papers/pdfs/bergstrom-isochords-2007.pdf
+
+    Colour Intervals: Applying Concepts of Musical Consonance and Dissonance to Colour
+    http://www.katlubar.com/html/theories.html#Note7
+

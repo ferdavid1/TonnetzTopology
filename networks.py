@@ -1,16 +1,56 @@
 import networkx as nx 
-import librosa as rosa
-from jchord.core import Note
+import turtle
+import numpy as np
+from collections import deque
 from pychord import chord
-#from jchord.progressions import ChordProgression
 from pychord import ChordProgression
 import matplotlib.pyplot as plt 
+# visualize both in-chord intervals and chord-to-chord intervals
+
+# twelve tone dict
+chromatic = {"C":0,  "C#":1, "Db":1, "D":2, "D#":3, "Eb":3, "E":4, "F":5, "F#":6, "Gb":6, "G":7, "G#":8, "Ab":8, "A":9, "A#":10, "Bb":10, "B":11}
+intervals = ["unison", "m2", "maj2", "m3", "maj3", "p4", "tritone" "p5", "m6", "maj6", "m7", "maj7"] # to index
 
 # sample chord progression
 testprog = ["Am7", "Cmaj7", "Fmaj7", "Em7"]
-#prog = list(ChordProgression.from_string(testprog))[0] # make progression into list of chord objects
 prog = ChordProgression(testprog)
-print(prog[0].components_with_pitch(4)) 
+chordnotes = [p.components_with_pitch(4) for p in prog] 
+
+tur = turtle.Turtle()
+tur.ht() # hide turtle arrow
+
+for i, chord in enumerate(chordnotes):
+	indices = []
+	for note in chord:
+		index = chromatic[note[:-1]] # get the note and its index for interval purposes
+		indices.append(index)
+	ints = []
+	for j, ind in enumerate(indices):
+		if j==0:
+			pass
+		else:
+			ints.append(intervals[np.abs(ind-indices[j-1])])
+	chordnotes[i] = (chord, indices, ints)
+	print(chordnotes[i])
+	tur.penup()
+	tur.setpos(-5, 15)
+	tur.write("m7")
+	tur.home()
+	tur.penup()
+	tur.dot(20, "blue") # first interval
+	tur.setpos(95,15)
+	tur.write("maj3")
+	tur.penup()
+	tur.setpos(100,0)
+	tur.dot(20, "green") # second interval
+	tur.setpos(195,15)
+	tur.write("m3")
+	tur.setpos(200,0)
+	tur.dot(20, "red") #third interval
+	tur.home()
+
+turtle.done()
+# print(chordnotes)
 
 # tonnetz grid representation of circle of intervals
 #isofifths = {[root, fifth, ],[root, ]}
